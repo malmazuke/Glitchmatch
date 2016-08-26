@@ -1,20 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 using Kino;
 
-public class PlayerGlitch : MonoBehaviour {
+public class PlayerGlitch : NetworkBehaviour {
 
 	#region Public Properties
 
-	public Camera myCamera;
-	public Datamosh datamosh;
-	public float maximumGlitchTime = 5.0f;
+	public float maximumGlitchTime = 3.0f;
 
 	#endregion
 
 	#region Private Properties
 
-	private float glitchTimeRemaining = 0.0f;
+	private Camera myCamera;
+	private Datamosh datamosh;
 
 	#endregion
 
@@ -22,12 +22,12 @@ public class PlayerGlitch : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		if (!isLocalPlayer) {
+			return;
+		}
+
+		myCamera = Camera.main;
+		datamosh = myCamera.GetComponent<Datamosh> ();
 	}
 
 	#endregion
@@ -35,6 +35,10 @@ public class PlayerGlitch : MonoBehaviour {
 	#region Public Methods
 
 	public void ProjectileExploded (ExplosiveProjectile projectile) {
+		if (!isLocalPlayer) {
+			return;
+		}
+
 		// Check to see if the projectile is visible
 		Vector3 screenPoint = myCamera.WorldToViewportPoint (projectile.transform.position);
 		if (screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1) {
@@ -51,12 +55,14 @@ public class PlayerGlitch : MonoBehaviour {
 	}
 
 	IEnumerator GlitchMe () {
-		glitchTimeRemaining = maximumGlitchTime;
-		datamosh.entropy = 1.0f;
+		datamosh.entropy = maximumGlitchTime;
 		datamosh.Glitch ();
-		while (glitchTimeRemaining > 0.0f) {
-			glitchTimeRemaining -= Time.deltaTime;
-			datamosh.entropy = glitchTimeRemaining / maximumGlitchTime;
+		while (datamosh.entropy > 0.0f) {
+			float amountToDecrease = Time.deltaTime;
+			if (datamosh.entropy < 1.0) {
+				amountToDecrease /= 10.0f;
+			}
+			datamosh.entropy -= amountToDecrease;
 			yield return null;
 		}
 		datamosh.entropy = 1.0f;
