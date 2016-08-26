@@ -24,6 +24,8 @@ GameObject:
   - 23: {fileID: 23000010458904730}
   - 54: {fileID: 54000010977375112}
   - 114: {fileID: 114000011110562616}
+  - 114: {fileID: 114000012507409088}
+  - 114: {fileID: 114000013270001656}
   m_Layer: 0
   m_Name: GlitchGrenade
   m_TagString: Untagged
@@ -106,7 +108,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac05c50d7b964196ae243f62359f4b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuseTime: 3
+  fuseTime: 2
+--- !u!114 &114000012507409088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013208883630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 223
+    i1: 88
+    i2: 28
+    i3: 58
+    i4: 149
+    i5: 31
+    i6: 84
+    i7: 216
+    i8: 105
+    i9: 220
+    i10: 157
+    i11: 66
+    i12: 48
+    i13: 39
+    i14: 212
+    i15: 106
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114000013270001656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013208883630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!135 &135000010926908476
 SphereCollider:
   m_ObjectHideFlags: 1
