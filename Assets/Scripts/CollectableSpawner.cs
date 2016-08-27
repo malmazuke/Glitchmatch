@@ -13,20 +13,6 @@ public class CollectableSpawner : NetworkBehaviour {
 
 	#endregion
 
-	#region Unity Methods
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-	#endregion
-
 	#region Unity Networking
 
 	public override void OnStartServer ()
@@ -40,6 +26,9 @@ public class CollectableSpawner : NetworkBehaviour {
 			GameObject collectable = Instantiate (collectablePrefab, spawnPosition, Quaternion.identity) as GameObject;
 			NetworkServer.Spawn (collectable);
 		}
+
+		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController> ();
+		gc.SetNumberOfCollectables (numberOfCollectables);
 	}
 
 	#endregion

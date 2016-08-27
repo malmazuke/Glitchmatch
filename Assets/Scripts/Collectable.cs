@@ -5,7 +5,7 @@ public class Collectable : MonoBehaviour {
 
 	#region Public Properties
 
-	public int pointsWorth = 100;
+	public int pointsWorth = 1;
 	public bool shouldRandomizeStartingRotation = true;
 
 	public float waveSpeed = 3.0f;
@@ -45,6 +45,9 @@ public class Collectable : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Player") {
 			other.GetComponent<Points> ().AddPoints (pointsWorth);
+
+			GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController> ();
+			gc.CollectableCollected ();
 			Destroy (gameObject);
 		}
 	}

@@ -12,7 +12,6 @@ public class Points : NetworkBehaviour {
 			return;
 		}
 		currentPoints += pointsToAdd;
-		Debug.Log ("Points: " + currentPoints);
 	}
 
 	void OnPointsChange (int pointsChange) {
