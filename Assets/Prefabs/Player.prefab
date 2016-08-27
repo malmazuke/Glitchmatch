@@ -314,7 +314,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1000013208883630, guid: df581c3a951f54d869dc9d423027d46a,
     type: 2}
   projectileSpawn: {fileID: 4000011264898158}
-  projectileForce: 800
+  projectileVelocity: 30
 --- !u!114 &114000011862782308
 MonoBehaviour:
   m_ObjectHideFlags: 1
