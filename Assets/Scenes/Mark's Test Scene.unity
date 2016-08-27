@@ -938,8 +938,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectablePrefab: {fileID: 1000010964624078, guid: f2aa2c317b85b4e789ed39b8cbded93a,
     type: 2}
-  numberOfCollectables: 25
-  spawnDistance: 12.5
+  numberOfCollectables: 50
+  spawnDistance: 25
   spawnHeight: 1.75
 --- !u!1 &1405219185
 GameObject:
