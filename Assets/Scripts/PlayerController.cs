@@ -4,6 +4,12 @@ using System.Collections;
 
 public class PlayerController : NetworkBehaviour {
 
+	#region Public Properties
+
+	public float yOutOfBounds = -200.0f;
+
+	#endregion
+
 	#region Private Properties
 
 	NetworkStartPosition[] spawnPoints;
@@ -16,6 +22,12 @@ public class PlayerController : NetworkBehaviour {
 	void Start () {
 		if (isLocalPlayer) {
 			spawnPoints = FindObjectsOfType<NetworkStartPosition> ();
+		}
+	}
+
+	void Update () {
+		if (transform.position.y < yOutOfBounds) {
+			Respawn ();
 		}
 	}
 
@@ -33,6 +45,12 @@ public class PlayerController : NetworkBehaviour {
 
 	[ClientRpc]
 	public void RpcRespawn () {
+		Respawn ();
+	}
+
+	#endregion
+
+	void Respawn () {
 		Vector3 spawnPoint = Vector3.zero;
 
 		if (spawnPoints != null && spawnPoints.Length > 0) {
@@ -41,6 +59,4 @@ public class PlayerController : NetworkBehaviour {
 
 		transform.position = spawnPoint;
 	}
-
-	#endregion
 }
