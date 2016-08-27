@@ -7,6 +7,7 @@ public class GunFollowCamera : NetworkBehaviour {
 	#region Public Properties
 
 	public Transform gunTransform;
+	public Transform gun;
 
 	#endregion
 
@@ -22,6 +23,7 @@ public class GunFollowCamera : NetworkBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (!isLocalPlayer) {
+			gun.GetComponent<Renderer> ().enabled = false;
 			return;
 		}
 		myCameraTransform = GetComponentInChildren<Camera> ().transform;
