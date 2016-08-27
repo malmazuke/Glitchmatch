@@ -538,7 +538,7 @@ PlayerSettings:
   XboxOne::VR::enabledDevices: []
   iOS::VR::enabledDevices: []
   tvOS::VR::enabledDevices: []
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  cloudProjectId: 941c1f5f-5b91-47e2-9b11-a91877c17ef6
+  projectName: Glitchmatch
+  organizationId: malmazuke
   cloudEnabled: 0
