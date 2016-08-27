@@ -28,6 +28,7 @@ public class PlayerGlitch : NetworkBehaviour {
 			return;
 		}
 
+		// Gather components
 		myCamera = Camera.main;
 		datamosh = myCamera.GetComponent<Datamosh> ();
 	}
