@@ -42,7 +42,20 @@ public class PlayerGlitch : NetworkBehaviour {
 		// Check to see if the projectile is visible
 		Vector3 screenPoint = myCamera.WorldToViewportPoint (projectile.transform.position);
 		if (screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1) {
-			EnableGlitch ();
+			// TODO mask the raycast so that other projectiles do not interfere
+			// TODO add maxDistance to the target - using distance between player and projectile
+			Vector3 screenPointInPixels = new Vector3 (
+				screenPoint.x * myCamera.pixelWidth, 
+				screenPoint.y * myCamera.pixelHeight, 
+				screenPoint.z);
+			Ray ray = myCamera.ScreenPointToRay(screenPointInPixels);
+			RaycastHit hitInfo;
+			Physics.Raycast (ray, out hitInfo);
+			// If we raycast and found that the target we hit was the same projectile
+			// Then we enable the crazy glitch effect
+			if (hitInfo.collider != null && hitInfo.collider.gameObject == projectile.gameObject) {
+				EnableGlitch ();
+			}
 		}
 	}
 
