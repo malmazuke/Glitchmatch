@@ -7,11 +7,6 @@ public class LetMeLive : MonoBehaviour {
 	void Start () {
 		StartCoroutine (WaitAndDie (3.0f));
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	IEnumerator WaitAndDie(float waitTime) {
 		yield return new WaitForSeconds(waitTime);

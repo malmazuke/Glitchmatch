@@ -109,6 +109,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuseTime: 2
+  particleSystemPrefabs:
+  - {fileID: 1000013529676630, guid: 2e819bb26ea9e49698e9829966b68238, type: 2}
+  - {fileID: 1000010212887994, guid: 50bd60c0a598b4ce2bee6f4327964d8e, type: 2}
 --- !u!114 &114000012507409088
 MonoBehaviour:
   m_ObjectHideFlags: 1
