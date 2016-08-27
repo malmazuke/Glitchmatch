@@ -60,8 +60,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				transform.position.y + m_OriginalCameraPosition.y, 
 				transform.position.z);
 			m_Camera.transform.SetParent (transform);
-			// Arrange our children so that they are now children of the camera
-			transform.GetChild (0).parent = m_Camera.transform;
 
             m_FovKick.Setup(m_Camera);
             m_HeadBob.Setup(m_Camera, m_StepInterval);
