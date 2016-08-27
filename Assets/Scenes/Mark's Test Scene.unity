@@ -808,6 +808,7 @@ MonoBehaviour:
   m_SpawnPrefabs:
   - {fileID: 1000013208883630, guid: df581c3a951f54d869dc9d423027d46a, type: 2}
   - {fileID: 1000011466015282, guid: 56d80fb630a2a458eb6dd9eb079168d8, type: 2}
+  - {fileID: 1000010964624078, guid: f2aa2c317b85b4e789ed39b8cbded93a, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:

@@ -35,6 +35,9 @@ public class GameController : NetworkBehaviour {
 	}
 
 	public void CollectableCollected () {
+		if (!isServer) {
+			return;
+		}
 		numberOfCollectables--;
 		Debug.Log ("Number of collectables remaining: " + numberOfCollectables);
 
