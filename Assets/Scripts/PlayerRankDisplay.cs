@@ -49,6 +49,16 @@ public class PlayerRankDisplay : MonoBehaviour {
 			// Refresh the text fields list
 			textFields = canvas.GetComponentsInChildren<Text> ();
 		}
+			
+		// Layout text fields
+		float yy = 0f;
+		for (int i = 0; i < textFields.Length; i++) {
+			Text tf = textFields[i];
+			PlayerAndScore score = scores [i];
+			tf.text = score.currentPoints.ToString();
+			tf.rectTransform.anchoredPosition = new Vector3 (0, yy, 0);
+			yy += 60;
+		}
 	}
 
 	private void AddPlayerToScores(PlayerAndScore score){
