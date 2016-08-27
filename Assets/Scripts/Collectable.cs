@@ -6,6 +6,7 @@ public class Collectable : MonoBehaviour {
 	#region Public Properties
 
 	public int pointsWorth = 100;
+	public bool shouldRandomizeStartingRotation = true;
 
 	public float waveSpeed = 3.0f;
 	public float waveAmplitude = 0.1f;
@@ -15,6 +16,7 @@ public class Collectable : MonoBehaviour {
 	#region Private Properties
 
 	Vector3 originalPosition;
+	float waveOffset = 0.0f;
 
 	#endregion
 
@@ -24,13 +26,20 @@ public class Collectable : MonoBehaviour {
 		originalPosition = transform.position;
 	}
 
+	void Start () {
+		if (shouldRandomizeStartingRotation) {
+			transform.rotation = Quaternion.Euler (transform.rotation.x, Random.Range (0.0f, 359.0f), transform.rotation.z);
+			waveOffset = Random.Range (0.0f, 5.0f);
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
 		Vector3 updatedPosition = transform.position;
-		updatedPosition.y = originalPosition.y +  Mathf.Sin (Time.time * waveSpeed) * waveAmplitude;
+		updatedPosition.y = originalPosition.y +  Mathf.Sin (Time.time * waveSpeed + waveOffset) * waveAmplitude;
 		transform.position = updatedPosition;
 
-		transform.Rotate (1.0f, 0.0f, -1.0f);
+		transform.Rotate (0.0f, 1.0f, 0.0f);
 	}
 
 	void OnTriggerEnter(Collider other) {
