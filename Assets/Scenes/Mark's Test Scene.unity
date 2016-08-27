@@ -753,7 +753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 378fbf0a4e5534783855e655d2fb7a9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectablePrefab: {fileID: 1000011466015282, guid: 56d80fb630a2a458eb6dd9eb079168d8,
+  collectablePrefab: {fileID: 1000010964624078, guid: f2aa2c317b85b4e789ed39b8cbded93a,
     type: 2}
   numberOfCollectables: 100
   spawnDistance: 25
