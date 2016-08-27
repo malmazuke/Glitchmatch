@@ -49,11 +49,7 @@ public class Collectable : NetworkBehaviour {
 		}
 		if (other.tag == "Player") {
 			other.GetComponent<Points> ().AddPoints (pointsWorth);
-
-//			GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController> ();
-//			gc.CollectableCollected ();
-//			Destroy (gameObject);
-			
+			GameObject.FindGameObjectWithTag ("CollectableSpawner").GetComponent<CollectableSpawner> ().CollectableWasCollected (this);			
 		}
 	}
 

@@ -7640,38 +7640,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 1000011675795956, guid: 1be16801050ea446e96b5ad53e62c1de, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000012646585836, guid: 1be16801050ea446e96b5ad53e62c1de, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010190815466, guid: 1be16801050ea446e96b5ad53e62c1de, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 23000011976277480, guid: 1be16801050ea446e96b5ad53e62c1de,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 23000011828968392, guid: 1be16801050ea446e96b5ad53e62c1de,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 23000011031320614, guid: 1be16801050ea446e96b5ad53e62c1de,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 23000010413089994, guid: 1be16801050ea446e96b5ad53e62c1de,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1be16801050ea446e96b5ad53e62c1de, type: 2}
   m_IsPrefabParent: 0
@@ -7779,16 +7747,6 @@ Prefab:
     - target: {fileID: 4000013156583402, guid: 3ba95f6cffc4e41d1b591236de820867, type: 2}
       propertyPath: m_RootOrder
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013411202110, guid: 3ba95f6cffc4e41d1b591236de820867,
-        type: 2}
-      propertyPath: numberOfCollectables
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013411202110, guid: 3ba95f6cffc4e41d1b591236de820867,
-        type: 2}
-      propertyPath: spawnDistance
-      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ba95f6cffc4e41d1b591236de820867, type: 2}
