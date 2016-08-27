@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class Collectable : MonoBehaviour {
+public class Collectable : NetworkBehaviour {
 
 	#region Public Properties
 
@@ -43,6 +44,9 @@ public class Collectable : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
+		if (!isServer) {
+			return;
+		}
 		if (other.tag == "Player") {
 			other.GetComponent<Points> ().AddPoints (pointsWorth);
 
