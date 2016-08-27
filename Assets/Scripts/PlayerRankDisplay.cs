@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -27,7 +28,7 @@ public class PlayerRankDisplay : MonoBehaviour {
 			Points playerPoints = gameObject.GetComponent<Points> ();
 			var playerScore = new PlayerAndScore {
 				player = gameObject,
-				currentPoints = playerPoints.currentPoints,
+				currentPoints = playerPoints.currentPoints
 			};
 			AddPlayerToScores (playerScore);
 		}
@@ -55,7 +56,7 @@ public class PlayerRankDisplay : MonoBehaviour {
 		for (int i = 0; i < textFields.Length; i++) {
 			Text tf = textFields[i];
 			PlayerAndScore score = scores [scores.Count - i - 1];
-			tf.text = score.currentPoints.ToString();
+			tf.text = score.currentPoints.ToString() + " " + GetNameOfPlayer(score.player);
 			tf.rectTransform.anchoredPosition = new Vector3 (0, yy, 0);
 			yy -= 60;
 		}
@@ -74,6 +75,14 @@ public class PlayerRankDisplay : MonoBehaviour {
 		// If we never found a score greater than ours
 		// then add our score to the end of the list
 		scores.Add (score);
+	}
+
+	private string GetNameOfPlayer(GameObject player) {
+		var ctrl = NetworkManager.singleton.client.connection.playerControllers[0];
+		if (ctrl.gameObject == player) {
+			return "(You)";
+		}
+		return "";
 	}
 }
 	
