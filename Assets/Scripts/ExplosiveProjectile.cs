@@ -7,6 +7,14 @@ public class ExplosiveProjectile : MonoBehaviour {
 
 	public float fuseTime = 3.0f;
 	public GameObject[] particleSystemPrefabs;
+	public AudioClip explosionSFX;
+	public Material flashMaterial;
+
+	#endregion
+
+	#region Private Properties
+
+	Material originalMaterial;
 
 	#endregion
 
@@ -39,6 +47,10 @@ public class ExplosiveProjectile : MonoBehaviour {
 
 		foreach (GameObject g in particleSystemPrefabs) {
 			Instantiate (g, transform.position, Quaternion.identity);
+		}
+
+		if (explosionSFX != null) {
+			AudioSource.PlayClipAtPoint (explosionSFX, transform.position);
 		}
 
 		Destroy(gameObject);

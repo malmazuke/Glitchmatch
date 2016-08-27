@@ -108,10 +108,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac05c50d7b964196ae243f62359f4b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuseTime: 2
+  fuseTime: 3
   particleSystemPrefabs:
   - {fileID: 1000013529676630, guid: 2e819bb26ea9e49698e9829966b68238, type: 2}
   - {fileID: 1000010212887994, guid: 50bd60c0a598b4ce2bee6f4327964d8e, type: 2}
+  explosionSFX: {fileID: 8300000, guid: aa0eedb6bf3d241a882e3b1b569ca139, type: 3}
+  flashMaterial: {fileID: 2100000, guid: b2c0a8df9de794742810f0101f071df3, type: 2}
 --- !u!114 &114000012507409088
 MonoBehaviour:
   m_ObjectHideFlags: 1
