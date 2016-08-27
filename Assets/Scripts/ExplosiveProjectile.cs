@@ -22,7 +22,7 @@ public class ExplosiveProjectile : MonoBehaviour {
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
 		foreach (GameObject player in players) {
 			player.GetComponent<PlayerGlitch> ().ProjectileExploded(this);
-			Destroy(gameObject);
 		}
+		Destroy(gameObject);
 	}
 }
