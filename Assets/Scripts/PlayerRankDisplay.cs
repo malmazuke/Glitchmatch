@@ -54,10 +54,10 @@ public class PlayerRankDisplay : MonoBehaviour {
 		float yy = 0f;
 		for (int i = 0; i < textFields.Length; i++) {
 			Text tf = textFields[i];
-			PlayerAndScore score = scores [i];
+			PlayerAndScore score = scores [scores.Count - i - 1];
 			tf.text = score.currentPoints.ToString();
 			tf.rectTransform.anchoredPosition = new Vector3 (0, yy, 0);
-			yy += 60;
+			yy -= 60;
 		}
 	}
 
