@@ -5,6 +5,8 @@ public class Collectable : MonoBehaviour {
 
 	#region Public Properties
 
+	public int pointsWorth = 100;
+
 	public float waveSpeed = 3.0f;
 	public float waveAmplitude = 0.1f;
 
@@ -29,6 +31,13 @@ public class Collectable : MonoBehaviour {
 		transform.position = updatedPosition;
 
 		transform.Rotate (1.0f, 0.0f, -1.0f);
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.tag == "Player") {
+			other.GetComponent<Points> ().AddPoints (pointsWorth);
+			Destroy (gameObject);
+		}
 	}
 
 	#endregion

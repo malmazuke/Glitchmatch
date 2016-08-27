@@ -1,0 +1,46 @@
+﻿using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;
+
+public class CollectableSpawner : NetworkBehaviour {
+
+	#region Public Properties
+
+	public GameObject collectablePrefab;
+	public int numberOfCollectables;
+	public float spawnDistance = 25.0f;
+	public float spawnHeight = 1.5f;
+
+	#endregion
+
+	#region Unity Methods
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+
+	#endregion
+
+	#region Unity Networking
+
+	public override void OnStartServer ()
+	{
+		for (int i = 0; i < numberOfCollectables; i++) {
+			var spawnPosition = new Vector3 (
+				Random.Range (-spawnDistance, spawnDistance), 
+				spawnHeight, 
+				Random.Range (-spawnDistance, spawnDistance));
+
+			GameObject collectable = (GameObject)GameObject.Instantiate (collectablePrefab, spawnPosition, Quaternion.identity);
+			NetworkServer.Spawn (collectable);
+		}
+	}
+
+	#endregion
+}

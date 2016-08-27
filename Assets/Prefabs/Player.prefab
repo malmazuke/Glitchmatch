@@ -27,6 +27,7 @@ GameObject:
   - 114: {fileID: 114000012841838180}
   - 114: {fileID: 114000012942988964}
   - 114: {fileID: 114000011288212950}
+  - 114: {fileID: 114000012373335330}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -409,6 +410,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
   m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+--- !u!114 &114000012373335330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012087530592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212bc9f05dcc44cf390be5a909b94317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPoints: 0
 --- !u!114 &114000012841838180
 MonoBehaviour:
   m_ObjectHideFlags: 1
