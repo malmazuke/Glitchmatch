@@ -25,7 +25,7 @@ public class FireProjectile : NetworkBehaviour {
 
 	[Command]
 	void CmdFire () {
-		Rigidbody shot = GameObject.Instantiate (projectilePrefab.GetComponent <Rigidbody> (), projectileSpawn.position, projectileSpawn.rotation) as Rigidbody;
+		Rigidbody shot = Instantiate (projectilePrefab.GetComponent <Rigidbody> (), projectileSpawn.position, projectileSpawn.rotation) as Rigidbody;
 		shot.velocity = shot.transform.forward * projectileVelocity;
 
 		NetworkServer.Spawn (shot.gameObject);
