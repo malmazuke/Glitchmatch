@@ -6,8 +6,10 @@ public class ExplosiveProjectile : MonoBehaviour {
 	#region Public Properties
 
 	public float fuseTime = 3.0f;
+	public float flashTime = 0.2f;
 	public GameObject[] particleSystemPrefabs;
 	public AudioClip explosionSFX;
+	public AudioClip beepSFX;
 	public Material flashMaterial;
 
 	#endregion
@@ -15,14 +17,25 @@ public class ExplosiveProjectile : MonoBehaviour {
 	#region Private Properties
 
 	Material originalMaterial;
+	private float nextFlash = 2.0f;
 
 	#endregion
 
 	#region Unity Methods
-	
+
+	void Start () {
+		originalMaterial = GetComponent<Renderer> ().material;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		fuseTime -= Time.deltaTime;
+
+		if (fuseTime < nextFlash) {
+			nextFlash -= nextFlash/2.0f;
+			StartCoroutine (FlashGrenade ());
+		}
+
 		if (fuseTime < 0.0f) {
 			Explode ();
 		}
@@ -54,6 +67,20 @@ public class ExplosiveProjectile : MonoBehaviour {
 		}
 
 		Destroy(gameObject);
+	}
+
+	#endregion
+
+	#region Private Methods
+
+	IEnumerator FlashGrenade () {
+		if (beepSFX != null) {
+			AudioSource.PlayClipAtPoint (beepSFX, transform.position);
+		}
+		Renderer myRenderer = GetComponent<Renderer> ();
+		myRenderer.material = flashMaterial;
+		yield return new WaitForSeconds (flashTime);
+		myRenderer.material = originalMaterial;
 	}
 
 	#endregion
