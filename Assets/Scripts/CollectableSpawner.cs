@@ -12,12 +12,6 @@ public class CollectableSpawner : NetworkBehaviour {
 
 	#endregion
 
-	#region Private Properties
-
-	List<Collectable> collectables = new List<Collectable> ();
-
-	#endregion
-
 	#region Unity Networking
 
 	public override void OnStartServer ()
@@ -37,12 +31,11 @@ public class CollectableSpawner : NetworkBehaviour {
 			var spawnPosition = spawnLocation.transform.position;
 
 			GameObject collectable = Instantiate (collectablePrefab, spawnPosition, Quaternion.identity) as GameObject;
-			collectables.Add (collectable.GetComponent<Collectable> ());
 			NetworkServer.Spawn (collectable);
 		}
 
 		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController> ();
-		gc.SetNumberOfCollectables (collectables.Count);
+		gc.SetNumberOfCollectables (spawnableLocations.Length);
 	}
 
 	public void CollectableWasCollected (Collectable collectable) {
@@ -57,7 +50,12 @@ public class CollectableSpawner : NetworkBehaviour {
 	#region Private Methods
 
 	IEnumerator TemporarilyDisableCollectable (Collectable collectable) {
-		collectable.gameObject.SetActive (false);
+		if (!isServer) {
+			yield break;
+		}
+		Vector3 collectablePosition = collectable.transform.position;
+
+		Destroy (collectable.gameObject);
 		
 		float timeElapsed = 0.0f;
 
@@ -66,7 +64,8 @@ public class CollectableSpawner : NetworkBehaviour {
 			yield return null;
 		}
 
-		collectable.gameObject.SetActive (true);
+		GameObject newCollectable = Instantiate (collectablePrefab, collectablePosition, Quaternion.identity) as GameObject;
+		NetworkServer.Spawn (newCollectable);
 	}
 
 	#endregion
