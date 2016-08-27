@@ -8,6 +8,8 @@ public class PlayerGlitch : NetworkBehaviour {
 	#region Public Properties
 
 	public float maximumGlitchTime = 3.0f;
+	public float minimumRotationHitFactor = 30.0f;
+	public float maximumRotationHitFactor = 60.0f;
 
 	#endregion
 
@@ -59,6 +61,12 @@ public class PlayerGlitch : NetworkBehaviour {
 		}
 	}
 
+	public void Hit (ExplosiveProjectile projectile) {
+		FuckWithRotationAndTransform (projectile);
+		projectile.Explode ();
+		EnableGlitch ();
+	}
+
 	#endregion
 
 	#region Private Methods
@@ -80,6 +88,12 @@ public class PlayerGlitch : NetworkBehaviour {
 		}
 		datamosh.entropy = 1.0f;
 		datamosh.Reset ();
+	}
+
+	void FuckWithRotationAndTransform (ExplosiveProjectile projectile) {
+		// TODO: Fuck with the rotation
+		CharacterController cc = GetComponent<CharacterController> ();
+		cc.Move (new Vector3 (0.0f, 2.0f, 0.0f));
 	}
 
 	#endregion
