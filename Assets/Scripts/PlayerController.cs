@@ -14,7 +14,9 @@ public class PlayerController : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		spawnPoints = FindObjectsOfType<NetworkStartPosition> ();
+		if (isLocalPlayer) {
+			spawnPoints = FindObjectsOfType<NetworkStartPosition> ();
+		}
 	}
 
 	#endregion
@@ -22,11 +24,15 @@ public class PlayerController : NetworkBehaviour {
 	#region Public Methods
 
 	public void Reset () {
+		if (!isServer) {
+			return;
+		}
 		GetComponent<Points> ().ResetPoints ();
-		Respawn ();
+		RpcRespawn ();
 	}
 
-	public void Respawn () {
+	[ClientRpc]
+	public void RpcRespawn () {
 		Vector3 spawnPoint = Vector3.zero;
 
 		if (spawnPoints != null && spawnPoints.Length > 0) {
