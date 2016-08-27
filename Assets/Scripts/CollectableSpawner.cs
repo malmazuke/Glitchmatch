@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
-using System.Collections;
+using System.Collections.Generic;
 
 public class CollectableSpawner : NetworkBehaviour {
 
 	#region Public Properties
 
 	public GameObject collectablePrefab;
-	public int numberOfCollectables;
-	public float spawnDistance = 25.0f;
-	public float spawnHeight = 1.5f;
+
+	#endregion
+
+	#region Private Properties
+
+	List<Collectable> collectables = new List<Collectable> ();
 
 	#endregion
 
@@ -25,18 +28,19 @@ public class CollectableSpawner : NetworkBehaviour {
 	#region Public Methods
 
 	public void SpawnCollectables () {
-		for (int i = 0; i < numberOfCollectables; i++) {
-			var spawnPosition = new Vector3 (
-				Random.Range (-spawnDistance, spawnDistance), 
-				spawnHeight, 
-				Random.Range (-spawnDistance, spawnDistance));
+		GameObject[] spawnableLocations = GameObject.FindGameObjectsWithTag ("CollectableSpawnPoint");
+
+		foreach (GameObject spawnLocation in spawnableLocations) {
+			spawnLocation.GetComponent<Renderer> ().enabled = false;
+			var spawnPosition = spawnLocation.transform.position;
 
 			GameObject collectable = Instantiate (collectablePrefab, spawnPosition, Quaternion.identity) as GameObject;
+			collectables.Add (collectable.GetComponent<Collectable> ());
 			NetworkServer.Spawn (collectable);
 		}
 
 		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController> ();
-		gc.SetNumberOfCollectables (numberOfCollectables);
+		gc.SetNumberOfCollectables (collectables.Count);
 	}
 
 	#endregion
