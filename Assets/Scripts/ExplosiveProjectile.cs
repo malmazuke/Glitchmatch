@@ -6,6 +6,7 @@ public class ExplosiveProjectile : MonoBehaviour {
 	#region Public Properties
 
 	public float fuseTime = 3.0f;
+	public GameObject[] particleSystemPrefabs;
 
 	#endregion
 
@@ -35,6 +36,11 @@ public class ExplosiveProjectile : MonoBehaviour {
 		foreach (GameObject player in players) {
 			player.GetComponent<PlayerGlitch> ().ProjectileExploded(this);
 		}
+
+		foreach (GameObject g in particleSystemPrefabs) {
+			Instantiate (g, transform.position, Quaternion.identity);
+		}
+
 		Destroy(gameObject);
 	}
 
