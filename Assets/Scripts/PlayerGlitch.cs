@@ -28,8 +28,14 @@ public class PlayerGlitch : NetworkBehaviour {
 			return;
 		}
 
+		// Gather components
 		myCamera = Camera.main;
 		datamosh = myCamera.GetComponent<Datamosh> ();
+
+		// Enable the camera pixelation
+		// TODO THIS SHOULD NOT LIVE HERE - should move to formal "Start Game" method
+		/*var pixelator = myCamera.GetComponent<CameraPixelate> ();
+		pixelator.enabled = true;*/
 	}
 
 	#endregion
