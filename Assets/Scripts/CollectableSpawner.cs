@@ -37,7 +37,7 @@ public class CollectableSpawner : NetworkBehaviour {
 				spawnHeight, 
 				Random.Range (-spawnDistance, spawnDistance));
 
-			GameObject collectable = (GameObject)GameObject.Instantiate (collectablePrefab, spawnPosition, Quaternion.identity);
+			GameObject collectable = Instantiate (collectablePrefab, spawnPosition, Quaternion.identity) as GameObject;
 			NetworkServer.Spawn (collectable);
 		}
 	}

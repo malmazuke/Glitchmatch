@@ -6,7 +6,7 @@ public class FireProjectile : NetworkBehaviour {
 
 	public GameObject projectilePrefab;
 	public Transform projectileSpawn;
-	public float projectileForce = 600.0f;
+	public float projectileVelocity = 30.0f;
 	
 	// Update is called once per frame
 	void Update () {
@@ -25,11 +25,9 @@ public class FireProjectile : NetworkBehaviour {
 
 	[Command]
 	void CmdFire () {
-		GameObject projectile = (GameObject)GameObject.Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation);
-		Rigidbody rb = projectile.GetComponent<Rigidbody> ();
+		Rigidbody shot = Instantiate (projectilePrefab.GetComponent <Rigidbody> (), projectileSpawn.position, projectileSpawn.rotation) as Rigidbody;
+		shot.velocity = shot.transform.forward * projectileVelocity;
 
-		rb.AddForce (projectile.transform.forward * projectileForce);
-
-		NetworkServer.Spawn (projectile);
+		NetworkServer.Spawn (shot.gameObject);
 	}
 }
