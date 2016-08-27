@@ -53,11 +53,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_CharacterController = GetComponent<CharacterController>();
 			m_Camera = Camera.main;
 
+			m_OriginalCameraPosition = m_Camera.transform.localPosition;
+
+			m_Camera.transform.position = new Vector3(
+				transform.position.x, 
+				transform.position.y + m_OriginalCameraPosition.y, 
+				transform.position.z);
+			m_Camera.transform.SetParent (transform);
 			// Arrange our children so that they are now children of the camera
 			transform.GetChild (0).parent = m_Camera.transform;
 
-			m_Camera.transform.SetParent (transform);
-            m_OriginalCameraPosition = m_Camera.transform.localPosition;
             m_FovKick.Setup(m_Camera);
             m_HeadBob.Setup(m_Camera, m_StepInterval);
             m_StepCycle = 0f;
