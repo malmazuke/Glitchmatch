@@ -39,8 +39,19 @@ public class GameController : NetworkBehaviour {
 		Debug.Log ("Number of collectables remaining: " + numberOfCollectables);
 
 		if (numberOfCollectables == 0) {
-			// TODO: Game Ended
-			Debug.Log ("Game Over!");
+			RestartGame ();
+		}
+	}
+
+	public void RestartGame () {
+		// TODO: This should be a bit more thorough than this
+		GameObject.FindGameObjectWithTag ("CollectableSpawner").GetComponent<CollectableSpawner> ().SpawnCollectables ();
+
+		GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
+
+		foreach (GameObject player in players) {
+			PlayerController pc = player.GetComponent<PlayerController> ();
+			pc.Reset ();
 		}
 	}
 

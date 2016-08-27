@@ -17,6 +17,14 @@ public class CollectableSpawner : NetworkBehaviour {
 
 	public override void OnStartServer ()
 	{
+		SpawnCollectables ();
+	}
+
+	#endregion
+
+	#region Public Methods
+
+	public void SpawnCollectables () {
 		for (int i = 0; i < numberOfCollectables; i++) {
 			var spawnPosition = new Vector3 (
 				Random.Range (-spawnDistance, spawnDistance), 
