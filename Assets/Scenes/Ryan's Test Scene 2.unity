@@ -3881,15 +3881,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1642238736}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f95e6ccd856f64846b8d08ecb8f573f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1642238740}
   pixelSize: 4
-  filterMode: 0
-  shader: {fileID: 4800000, guid: 75f63d1bbf0df4b7ca2ea6338b554b31, type: 3}
 --- !u!1 &1650855297
 GameObject:
   m_ObjectHideFlags: 0
