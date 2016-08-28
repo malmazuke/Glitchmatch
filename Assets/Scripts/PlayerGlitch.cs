@@ -58,7 +58,12 @@ public class PlayerGlitch : NetworkBehaviour {
 			// If we raycast and found that the target we hit was the same projectile
 			// Then we enable the crazy glitch effect
 			if (hitInfo.collider != null && hitInfo.collider.gameObject == projectile.gameObject) {
-				EnableGlitch ();
+				// Calculate the distance between the two. This determines the glitch strength
+				float distance = Vector3.Distance (transform.position, projectile.transform.position);
+				if (distance <= 0.0f) distance = 0.1f;
+				float glitchAmount = 1/(distance/2.0f);
+				glitchAmount = Mathf.Clamp (glitchAmount, 0.0f, maximumGlitchTime);
+				EnableGlitch (glitchAmount);
 			}
 		}
 	}
@@ -66,22 +71,22 @@ public class PlayerGlitch : NetworkBehaviour {
 	public void Hit (ExplosiveProjectile projectile) {
 		FuckWithRotationAndTransform (projectile);
 		projectile.Explode ();
-		EnableGlitch ();
+		EnableGlitch (maximumGlitchTime);
 	}
 
 	#endregion
 
 	#region Private Methods
 
-	void EnableGlitch () {
+	void EnableGlitch (float glitchStrength) {
 		if (glitchAudioSource != null) {
 			glitchAudioSource.Play ();
 		}
-		StartCoroutine (GlitchMe ());
+		StartCoroutine (GlitchMe (glitchStrength));
 	}
 
-	IEnumerator GlitchMe () {
-		datamosh.entropy = maximumGlitchTime;
+	IEnumerator GlitchMe (float glitchStrength) {
+		datamosh.entropy += glitchStrength;
 		datamosh.Glitch ();
 		while (datamosh.entropy > 0.0f) {
 			float amountToDecrease = Time.deltaTime;
@@ -91,7 +96,7 @@ public class PlayerGlitch : NetworkBehaviour {
 			datamosh.entropy -= amountToDecrease;
 			yield return null;
 		}
-		datamosh.entropy = 1.0f;
+		datamosh.entropy = 0.0f;
 		datamosh.Reset ();
 	}
 
