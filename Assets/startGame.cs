@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class startGame : MonoBehaviour {
 
@@ -14,6 +15,6 @@ public class startGame : MonoBehaviour {
 	}
 
 	public void StartGame(){
-		Application.LoadLevel ("Main"); 
+		SceneManager.LoadScene("Main"); 
 	}
 }
