@@ -7,10 +7,12 @@ public class ExplosiveProjectile : MonoBehaviour {
 
 	public float fuseTime = 3.0f;
 	public float flashTime = 0.2f;
+	public float safeTime = 0.3f;
 	public GameObject[] particleSystemPrefabs;
 	public AudioClip explosionSFX;
 	public AudioClip beepSFX;
 	public Material flashMaterial;
+	public Collider trigger;
 
 	#endregion
 
@@ -25,6 +27,7 @@ public class ExplosiveProjectile : MonoBehaviour {
 
 	void Start () {
 		originalMaterial = GetComponent<Renderer> ().material;
+		StartCoroutine (TemporarilyDisableCollider ());
 	}
 
 	// Update is called once per frame
@@ -72,6 +75,12 @@ public class ExplosiveProjectile : MonoBehaviour {
 	#endregion
 
 	#region Private Methods
+
+	IEnumerator TemporarilyDisableCollider () {
+		trigger.isTrigger = false;
+		yield return new WaitForSeconds (safeTime);
+		trigger.isTrigger = true;
+	}
 
 	IEnumerator FlashGrenade () {
 		if (beepSFX != null) {
