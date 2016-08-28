@@ -26,6 +26,7 @@ GameObject:
   - 114: {fileID: 114000011110562616}
   - 114: {fileID: 114000012507409088}
   - 114: {fileID: 114000013270001656}
+  - 135: {fileID: 135000013570447480}
   m_Layer: 0
   m_Name: GlitchGrenade
   m_TagString: Projectile
@@ -110,12 +111,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fuseTime: 3
   flashTime: 0.2
+  safeTime: 0.3
   particleSystemPrefabs:
   - {fileID: 1000013529676630, guid: 2e819bb26ea9e49698e9829966b68238, type: 2}
   - {fileID: 1000011769375382, guid: 50bd60c0a598b4ce2bee6f4327964d8e, type: 2}
   explosionSFX: {fileID: 8300000, guid: aa0eedb6bf3d241a882e3b1b569ca139, type: 3}
   beepSFX: {fileID: 8300000, guid: 287f826d3f6774f15808d738da348fb3, type: 3}
   flashMaterial: {fileID: 2100000, guid: b2c0a8df9de794742810f0101f071df3, type: 2}
+  trigger: {fileID: 135000013570447480}
 --- !u!114 &114000012507409088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,4 +182,16 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135000013570447480
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013208883630}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
