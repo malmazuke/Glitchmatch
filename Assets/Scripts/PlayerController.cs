@@ -8,7 +8,7 @@ public class PlayerController : NetworkBehaviour {
 
 	public float yOutOfBounds = -200.0f;
 
-	[SyncVar(hook = "OnPlayerNameChange")]
+	[SyncVar]
 	public string playerName;
 
 	#endregion
@@ -67,10 +67,5 @@ public class PlayerController : NetworkBehaviour {
 		}
 
 		transform.position = spawnPoint;
-	}
-
-	void OnPlayerNameChange(string newName) {
-		// TODO do we need this?
-		Debug.Log("OnPlayerNameChange: " + newName);
 	}
 }
