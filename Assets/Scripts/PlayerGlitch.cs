@@ -7,6 +7,7 @@ public class PlayerGlitch : NetworkBehaviour {
 
 	#region Public Properties
 
+	public int hitPointPenalty = 1000;
 	public float maximumGlitchTime = 3.0f;
 	public float minimumRotationHitFactor = 30.0f;
 	public float maximumRotationHitFactor = 60.0f;
@@ -74,12 +75,16 @@ public class PlayerGlitch : NetworkBehaviour {
 	}
 
 	public void Hit (ExplosiveProjectile projectile) {
+		if (!isLocalPlayer) {
+			return;
+		}
 		if (directHitAudioClip) {
 			AudioSource.PlayClipAtPoint (directHitAudioClip, transform.position);
 		}
 		FuckWithRotationAndTransform (projectile);
 		projectile.Explode ();
 		EnableGlitch (maximumGlitchTime);
+		GetComponent<Points> ().CmdRemovePoints (hitPointPenalty);
 	}
 
 	#endregion

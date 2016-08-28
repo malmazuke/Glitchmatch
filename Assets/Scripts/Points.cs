@@ -20,4 +20,12 @@ public class Points : NetworkBehaviour {
 		}
 		currentPoints += pointsToAdd;
 	}
+
+	[Command]
+	public void CmdRemovePoints (int pointsToRemove) {
+		if (!isServer) {
+			return;
+		}
+		currentPoints -= pointsToRemove;
+	}
 }

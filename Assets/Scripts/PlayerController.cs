@@ -7,6 +7,7 @@ public class PlayerController : NetworkBehaviour {
 	#region Public Properties
 
 	public float yOutOfBounds = -200.0f;
+	public int fallOffEdgePointPenalty = 1000;
 
 	[SyncVar]
 	public string playerName;
@@ -34,8 +35,11 @@ public class PlayerController : NetworkBehaviour {
 	}
 
 	void Update () {
-		if (transform.position.y < yOutOfBounds) {
-			Respawn ();
+		if (isLocalPlayer) {
+			if (transform.position.y < yOutOfBounds) {
+				GetComponent<Points> ().CmdRemovePoints (fallOffEdgePointPenalty);
+				Respawn ();
+			}
 		}
 	}
 
