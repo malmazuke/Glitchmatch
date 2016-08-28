@@ -81,7 +81,7 @@ Material:
       second: 1
     - first:
         name: _ColorIntensity
-      second: 0.2
+      second: 0.1
     - first:
         name: _ColorProbability
       second: 0.1
@@ -99,7 +99,7 @@ Material:
       second: 0.2
     - first:
         name: _DispProbability
-      second: 0.5
+      second: 0.3
     - first:
         name: _DstBlend
       second: 0
