@@ -7,13 +7,8 @@ public class FireProjectile : NetworkBehaviour {
 	public GameObject projectilePrefab;
 	public Transform projectileSpawn;
 	public float projectileVelocity = 30.0f;
-	public AudioClip FireSound;
 
-	private AudioSource playerAudio;
-
-	void Start () {
-		playerAudio = gameObject.GetComponent<AudioSource> ();
-	}
+	public AudioSource shootAudioSource;
 
 	// Update is called once per frame
 	void Update () {
@@ -31,7 +26,9 @@ public class FireProjectile : NetworkBehaviour {
 	}
 
 	void ShootyMcShootFace () {
-		playerAudio.PlayOneShot (FireSound);
+		if (shootAudioSource != null) {
+			shootAudioSource.Play ();
+		}
 	}
 
 	[Command]

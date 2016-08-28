@@ -10,6 +10,7 @@ public class PlayerGlitch : NetworkBehaviour {
 	public float maximumGlitchTime = 3.0f;
 	public float minimumRotationHitFactor = 30.0f;
 	public float maximumRotationHitFactor = 60.0f;
+	public AudioSource glitchAudioSource;
 
 	#endregion
 
@@ -73,6 +74,9 @@ public class PlayerGlitch : NetworkBehaviour {
 	#region Private Methods
 
 	void EnableGlitch () {
+		if (glitchAudioSource != null) {
+			glitchAudioSource.Play ();
+		}
 		StartCoroutine (GlitchMe ());
 	}
 

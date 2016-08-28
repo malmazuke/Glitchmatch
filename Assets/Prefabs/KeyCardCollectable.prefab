@@ -99,6 +99,7 @@ MonoBehaviour:
   shouldRandomizeStartingRotation: 1
   waveSpeed: 3
   waveAmplitude: 0.1
+  collectedSFX: {fileID: 8300000, guid: a33dff83c127d4c5eb368bf24185518a, type: 3}
 --- !u!114 &114000013761555910
 MonoBehaviour:
   m_ObjectHideFlags: 1

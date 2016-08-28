@@ -12,6 +12,8 @@ public class Collectable : NetworkBehaviour {
 	public float waveSpeed = 3.0f;
 	public float waveAmplitude = 0.1f;
 
+	public AudioClip collectedSFX;
+
 	#endregion
 
 	#region Private Properties
@@ -44,6 +46,10 @@ public class Collectable : NetworkBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
+		if (collectedSFX != null) {
+			AudioSource.PlayClipAtPoint (collectedSFX, transform.position);
+		}
+
 		if (!isServer) {
 			return;
 		}
