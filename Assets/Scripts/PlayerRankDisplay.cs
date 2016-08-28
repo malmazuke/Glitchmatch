@@ -35,25 +35,25 @@ public class PlayerRankDisplay : MonoBehaviour {
 
 		// Ensure that we have enough text fields to display player scores
 		Canvas canvas = this.GetComponent<Canvas>();
-		Text[] textFields = canvas.GetComponentsInChildren<Text> ();
-		if (textFields.Length != players.Length) {
-			Debug.Log ("Modify the text fields, text = " + textFields.Length + ", players = " + players.Length);
+		List<Text> textFields = new List<Text>(canvas.GetComponentsInChildren<Text> ());
+		if (textFields.Count != players.Length) {
+			Debug.Log ("Modify the text fields, text = " + textFields.Count + ", players = " + players.Length);
 			// Remove excess text fields
-			for (int i = players.Length; i < textFields.Length; i++) {
-				Destroy (textFields [i]);
+			for (int i = players.Length; i < textFields.Count; i++) {
+				Destroy (textFields [0].gameObject);
+				textFields.RemoveAt (0);
 			}
 			// Add any missing text fields
-			for (int i = textFields.Length; i < players.Length; i++) {
+			for (int i = textFields.Count; i < players.Length; i++) {
 				Text txt = (Text) Instantiate(templateTextComponent);
 				txt.transform.SetParent (canvas.transform, false);
+				textFields.Add (txt);
 			}
-			// Refresh the text fields list
-			textFields = canvas.GetComponentsInChildren<Text> ();
 		}
 			
 		// Layout text fields
 		float yy = 0f;
-		for (int i = 0; i < textFields.Length; i++) {
+		for (int i = 0; i < textFields.Count; i++) {
 			Text tf = textFields[i];
 			PlayerAndScore score = scores [scores.Count - i - 1];
 			tf.text = score.currentPoints.ToString() + " " + GetNameOfPlayer(score.player);
