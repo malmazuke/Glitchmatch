@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Points : NetworkBehaviour {
 
-	[SyncVar(hook = "OnPointsChange")]
+	[SyncVar]
 	public int currentPoints = 0;
 
 	public void ResetPoints () {
@@ -19,12 +19,5 @@ public class Points : NetworkBehaviour {
 			return;
 		}
 		currentPoints += pointsToAdd;
-	}
-
-	void OnPointsChange (int pointsChange) {
-		// TODO: Update some UI element
-		if (isLocalPlayer) {
-			Debug.Log ("My Score: " + pointsChange);
-		}
 	}
 }
