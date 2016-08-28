@@ -26,6 +26,10 @@ public class PlayerController : NetworkBehaviour {
 		if (isLocalPlayer) {
 			spawnPoints = FindObjectsOfType<NetworkStartPosition> ();
 			CmdSetPlayerName (System.Environment.UserName);
+
+			// Disable the Networking HUD
+			GameObject network = GameObject.FindGameObjectWithTag ("NetworkManager") as GameObject;
+			network.GetComponent<NetworkManagerHUD> ().showGUI = false;
 		}
 	}
 
