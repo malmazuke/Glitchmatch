@@ -51,6 +51,9 @@ public class GameController : NetworkBehaviour {
 	IEnumerator BeginEndSequence () {
 		Debug.Log ("Beginning End Sequence");
 		isEndSequence = true;
+		WinningPlayerDisplay winText = GameObject.FindGameObjectWithTag ("WinTextCanvas").GetComponent<WinningPlayerDisplay> ();
+		winText.RpcSetGameOver (isEndSequence);
+
 		yield return new WaitForSeconds (endSequenceTime);
 		RestartGame ();
 	}
@@ -68,6 +71,9 @@ public class GameController : NetworkBehaviour {
 
 		timeElapsed = 0.0f;
 		isEndSequence = false;
+
+		WinningPlayerDisplay winText = GameObject.FindGameObjectWithTag ("WinTextCanvas").GetComponent<WinningPlayerDisplay> ();
+		winText.RpcSetGameOver (isEndSequence);
 	}
 
 	#endregion
