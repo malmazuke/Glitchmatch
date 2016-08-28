@@ -8,6 +8,9 @@ public class PlayerController : NetworkBehaviour {
 
 	public float yOutOfBounds = -200.0f;
 
+	[SyncVar(hook = "OnPlayerNameChange")]
+	public string playerName;
+
 	#endregion
 
 	#region Private Properties
@@ -22,6 +25,7 @@ public class PlayerController : NetworkBehaviour {
 	void Start () {
 		if (isLocalPlayer) {
 			spawnPoints = FindObjectsOfType<NetworkStartPosition> ();
+			playerName = System.Environment.UserName;
 		}
 	}
 
@@ -58,5 +62,10 @@ public class PlayerController : NetworkBehaviour {
 		}
 
 		transform.position = spawnPoint;
+	}
+
+	void OnPlayerNameChange(string newName) {
+		// TODO do we need this?
+		Debug.Log("OnPlayerNameChange: " + newName);
 	}
 }
