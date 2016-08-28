@@ -10,7 +10,8 @@ public class PlayerGlitch : NetworkBehaviour {
 	public float maximumGlitchTime = 3.0f;
 	public float minimumRotationHitFactor = 30.0f;
 	public float maximumRotationHitFactor = 60.0f;
-	public AudioSource glitchAudioSource;
+	public AudioClip glitchAudioClip;
+	public AudioClip directHitAudioClip;
 
 	#endregion
 
@@ -64,11 +65,18 @@ public class PlayerGlitch : NetworkBehaviour {
 				float glitchAmount = 1/(distance/2.0f);
 				glitchAmount = Mathf.Clamp (glitchAmount, 0.0f, maximumGlitchTime);
 				EnableGlitch (glitchAmount);
+
+				if (glitchAudioClip != null) {
+					AudioSource.PlayClipAtPoint (glitchAudioClip, transform.position);
+				}
 			}
 		}
 	}
 
 	public void Hit (ExplosiveProjectile projectile) {
+		if (directHitAudioClip) {
+			AudioSource.PlayClipAtPoint (directHitAudioClip, transform.position);
+		}
 		FuckWithRotationAndTransform (projectile);
 		projectile.Explode ();
 		EnableGlitch (maximumGlitchTime);
@@ -79,9 +87,6 @@ public class PlayerGlitch : NetworkBehaviour {
 	#region Private Methods
 
 	void EnableGlitch (float glitchStrength) {
-		if (glitchAudioSource != null) {
-			glitchAudioSource.Play ();
-		}
 		StartCoroutine (GlitchMe (glitchStrength));
 	}
 
