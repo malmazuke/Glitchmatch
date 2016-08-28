@@ -78,11 +78,15 @@ public class PlayerRankDisplay : MonoBehaviour {
 	}
 
 	private string GetNameOfPlayer(GameObject player) {
-		var ctrl = NetworkManager.singleton.client.connection.playerControllers[0];
-		if (ctrl.gameObject == player) {
-			return "(You)";
+		// Get the given name of the player
+		PlayerController ctrl = player.GetComponent<PlayerController> ();
+		string result = ctrl.playerName;
+		// Add "You" if this player is the local player
+		var conn = NetworkManager.singleton.client.connection.playerControllers[0];
+		if (conn.gameObject == player) {
+			result += " (You)";
 		}
-		return "";
+		return result;
 	}
 }
 	
