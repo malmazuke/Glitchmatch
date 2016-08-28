@@ -6,7 +6,15 @@ public class GameController : NetworkBehaviour {
 
 	#region Public Properties
 
-	public int numberOfCollectables { get; private set; }
+	public float maxRoundTime = 300.0f;
+	public float endSequenceTime = 10.0f;
+
+	#endregion
+
+	#region Private Properties
+
+	float timeElapsed = 0.0f;
+	bool isEndSequence = false;
 
 	#endregion
 
@@ -24,26 +32,27 @@ public class GameController : NetworkBehaviour {
 		if (!isServer) {
 			return;
 		}
+
+		timeElapsed += Time.deltaTime;
+
+		if (timeElapsed > maxRoundTime) {
+			if (!isEndSequence) {
+				StartCoroutine (BeginEndSequence ());
+			}
+		} else {
+			Debug.Log ("Time remaining: " + (maxRoundTime - timeElapsed));
+		}
 	}
 
 	#endregion
 
 	#region Public Methods
 
-	public void SetNumberOfCollectables (int numberOfCollectables) {
-		this.numberOfCollectables = numberOfCollectables;
-	}
-
-	public void CollectableCollected () {
-		if (!isServer) {
-			return;
-		}
-		numberOfCollectables--;
-		Debug.Log ("Number of collectables remaining: " + numberOfCollectables);
-
-		if (numberOfCollectables == 0) {
-			RestartGame ();
-		}
+	IEnumerator BeginEndSequence () {
+		Debug.Log ("Beginning End Sequence");
+		isEndSequence = true;
+		yield return new WaitForSeconds (endSequenceTime);
+		RestartGame ();
 	}
 
 	public void RestartGame () {
@@ -56,6 +65,9 @@ public class GameController : NetworkBehaviour {
 			PlayerController pc = player.GetComponent<PlayerController> ();
 			pc.Reset ();
 		}
+
+		timeElapsed = 0.0f;
+		isEndSequence = false;
 	}
 
 	#endregion

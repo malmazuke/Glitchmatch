@@ -24,6 +24,11 @@ public class CollectableSpawner : NetworkBehaviour {
 	#region Public Methods
 
 	public void SpawnCollectables () {
+		if (!isServer) {
+			return;
+		}
+		ClearOldCollectables ();
+
 		GameObject[] spawnableLocations = GameObject.FindGameObjectsWithTag ("CollectableSpawnPoint");
 
 		foreach (GameObject spawnLocation in spawnableLocations) {
@@ -33,9 +38,6 @@ public class CollectableSpawner : NetworkBehaviour {
 			GameObject collectable = Instantiate (collectablePrefab, spawnPosition, Quaternion.identity) as GameObject;
 			NetworkServer.Spawn (collectable);
 		}
-
-		GameController gc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController> ();
-		gc.SetNumberOfCollectables (spawnableLocations.Length);
 	}
 
 	public void CollectableWasCollected (Collectable collectable) {
@@ -48,6 +50,15 @@ public class CollectableSpawner : NetworkBehaviour {
 	#endregion
 
 	#region Private Methods
+
+	void ClearOldCollectables () {
+		GameObject[] collectables = GameObject.FindGameObjectsWithTag ("Collectable");
+		if (collectables.Length > 0) {
+			foreach (GameObject go in collectables) {
+				Destroy (go);
+			}
+		}
+	}
 
 	IEnumerator TemporarilyDisableCollectable (Collectable collectable) {
 		if (!isServer) {
