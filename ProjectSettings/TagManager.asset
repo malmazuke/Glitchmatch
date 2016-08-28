@@ -9,6 +9,7 @@ TagManager:
   - CollectableSpawner
   - ExplodeyParticles
   - CollectableSpawnPoint
+  - NetworkManager
   layers:
   - Default
   - TransparentFX
