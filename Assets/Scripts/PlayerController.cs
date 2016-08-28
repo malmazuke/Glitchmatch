@@ -25,7 +25,7 @@ public class PlayerController : NetworkBehaviour {
 	void Start () {
 		if (isLocalPlayer) {
 			spawnPoints = FindObjectsOfType<NetworkStartPosition> ();
-			playerName = System.Environment.UserName;
+			CmdSetPlayerName (System.Environment.UserName);
 		}
 	}
 
@@ -33,6 +33,11 @@ public class PlayerController : NetworkBehaviour {
 		if (transform.position.y < yOutOfBounds) {
 			Respawn ();
 		}
+	}
+
+	[Command]
+	void CmdSetPlayerName(string playerName) {
+		this.playerName = playerName;
 	}
 
 	#endregion
