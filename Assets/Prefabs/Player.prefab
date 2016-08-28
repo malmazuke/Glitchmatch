@@ -437,7 +437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsWalking: 0
   m_WalkSpeed: 5
-  m_RunSpeed: 10
+  m_RunSpeed: 20
   m_RunstepLenghten: 0.7
   m_JumpSpeed: 10
   m_StickToGroundForce: 10
@@ -595,6 +595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yOutOfBounds: -200
+  playerName: 
 --- !u!114 &114000013380670508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -628,7 +629,8 @@ MonoBehaviour:
   maximumGlitchTime: 5
   minimumRotationHitFactor: 30
   maximumRotationHitFactor: 60
-  glitchAudioSource: {fileID: 82000013887220074}
+  glitchAudioClip: {fileID: 8300000, guid: 2c26831b1ceaf43e3b51da5697264ec2, type: 3}
+  directHitAudioClip: {fileID: 8300000, guid: 6a88358ef920b4559864582719791821, type: 3}
 --- !u!114 &114000013985856236
 MonoBehaviour:
   m_ObjectHideFlags: 1
